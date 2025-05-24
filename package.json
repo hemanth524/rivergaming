@@ -14,5 +14,8 @@
   "description": "",
   "dependencies": {
     "concurrently": "^9.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
