@@ -16,7 +16,7 @@ const ChatBox = ({ socket }) => {
     if (!isOpen) return;
     const fetchMessages = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/messages`, {
+        const res = await fetch(`/api/messages`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -46,7 +46,7 @@ const ChatBox = ({ socket }) => {
     }
     setLoading(true);
     try {
-      const res = await fetch(`${BASE_URL}/api/messages`, {
+      const res = await fetch(`/api/messages`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

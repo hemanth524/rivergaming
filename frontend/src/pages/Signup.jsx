@@ -20,7 +20,7 @@ const Signup = ({ switchToLogin }) => {
     e.preventDefault();
     setError("");
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", formData);
+      const res = await axios.post("/api/auth/register", formData);
       setUser(res.data.user);
       // Do NOT navigate on signup, just switch to login form:
       switchToLogin();

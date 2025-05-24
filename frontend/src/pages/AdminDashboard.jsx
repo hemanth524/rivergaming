@@ -19,7 +19,7 @@ const AdminDashboard = ({ socket }) => {
   useEffect(() => {
     const fetchStreamStatus = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/stream/status`);
+        const res = await fetch(`/api/stream/status`);
         const data = await res.json();
         setStreaming(data.isLive);
         if (data.stream?.youtubeLink) setYoutubeLink(data.stream.youtubeLink);
@@ -57,7 +57,7 @@ const AdminDashboard = ({ socket }) => {
     setError("");
     try {
       const defaultEmbedLink = "https://www.youtube.com/embed/C6XRRgjMFzA";
-      const res = await fetch(`${BASE_URL}/api/stream/start`, {
+      const res = await fetch(`/api/stream/start`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -80,7 +80,7 @@ const AdminDashboard = ({ socket }) => {
   const handleStopStream = async () => {
     setError("");
     try {
-      const res = await fetch(`${BASE_URL}/api/stream/stop`, {
+      const res = await fetch(`/api/stream/stop`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -118,7 +118,7 @@ const AdminDashboard = ({ socket }) => {
     }
 
     try {
-      const res = await fetch(`${BASE_URL}/api/quiz/create`, {
+      const res = await fetch(`/api/quiz/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

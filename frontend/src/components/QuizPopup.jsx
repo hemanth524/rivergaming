@@ -18,7 +18,7 @@ function QuizPopup({ currentQuiz, onSubmit, token }) {
     setLoading(true);
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/quiz/submit/${currentQuiz._id}`,
+        `/api/quiz/submit/${currentQuiz._id}`,
         {
           selectedOption: selectedAnswer,
           betPoints,

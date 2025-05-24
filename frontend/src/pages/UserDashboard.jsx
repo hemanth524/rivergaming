@@ -17,7 +17,7 @@ const UserDashboard = ({ socket }) => {
   useEffect(() => {
     const fetchStreamStatus = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/stream/status`);
+        const res = await fetch(`/api/stream/status`);
         const data = await res.json();
         setIsLive(data.isLive);
         if (data.stream?.youtubeLink) setYoutubeLink(data.stream.youtubeLink);
