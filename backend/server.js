@@ -4,6 +4,9 @@ const cors = require("cors");
 const http = require("http");
 const { Server } = require("socket.io");
 require("dotenv").config();
+const fs=require('fs')
+
+const path=require('path')
 
 const quizRoutes = require("./routes/quizRoutes");
 const walletRoutes = require("./routes/walletRoutes");
@@ -35,6 +38,23 @@ app.use("/api/quiz", quizRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/wallet", walletRoutes);
 app.use("/api/messages", messageRoutes);
+
+const distPath = path.join(__dirname, '..', 'frontend', 'dist');
+
+// Serve static files from Vite build
+app.use(express.static(distPath));
+
+// Fallback to index.html for client-side routing
+app.get('/{*any}', (req, res) => {
+  const indexFile = path.join(distPath, 'index.html');
+  fs.readFile(indexFile, 'utf8', (err, html) => {
+    if (err) {
+      console.error('Error reading index.html:', err);
+      return res.status(500).send('Server Error');
+    }
+    res.send(html);
+  });
+});
 
 // Socket.IO connection handling
 io.on("connection", (socket) => {
